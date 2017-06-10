@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Sharit.Views.SharitListView"
+             xmlns:templates="clr-namespace:Sharit.Views.Templates;assembly=Sharit"
+             Title="Sharit">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem 
+            Text="Add"            
+            Command="{Binding NewCommand}">
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <Grid>
+        <ListView    
+            ItemsSource="{Binding Items}"
+            SelectedItem="{Binding SelectedItem, Mode=TwoWay}" 
+            IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+            IsPullToRefreshEnabled="True"
+            HasUnevenRows="True"
+            SeparatorVisibility="Default"
+            RefreshCommand="{Binding RefreshCommand}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <templates:SharitViewCellTemplate />
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</ContentPage>

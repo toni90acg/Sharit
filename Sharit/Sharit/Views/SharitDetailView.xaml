@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Sharit.Views.SharitDetailView"
+             Title="{Binding Item.Title}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem 
+            Text="Edit"   
+            Command="{Binding EditCommand}">
+        </ToolbarItem>
+        <ToolbarItem 
+            Text="Delete"   
+            Command="{Binding DeleteCommand}">
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <ScrollView>
+        <StackLayout>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Label     
+                    Grid.Row="0"
+                    Grid.ColumnSpan="2"
+                    Text="{Binding Item.Title}"/>
+                <Label 
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Text="{Binding Item.Date}"/>
+                <Label
+                    Grid.Row="2"
+                    Grid.ColumnSpan="2"
+                    Grid.Column="0"
+                    Text="{Binding Item.Description}"
+                    />
+                <Label
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    Text="{Binding Item.Category.Description}"/>
+                <Label
+                    Grid.Row="4"
+                    Grid.Column="0"
+                    Text="{Binding Item.Price}"/>
+            </Grid>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
