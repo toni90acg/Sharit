@@ -19,30 +19,40 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            
+
+            <Label Text="Required fields."
+                   Grid.ColumnSpan="2"
+                   HorizontalOptions="CenterAndExpand"
+                   FontSize="Large"
+                   Font="Bold"
+                   TextColor="Red"
+                   IsVisible="{Binding ShowRequiredFields, Mode=TwoWay}"/>
+
             <Label Grid.Column="0"
-                   Grid.Row="0"
+                   Grid.Row="1"
                    Text="Title:"/>
             <Entry Grid.Column="1"
-                   Grid.Row="0"
+                   Grid.Row="1"
                    Placeholder="Insert title"
+                   x:Name="TitleEntry"
                    Text="{Binding Title, Mode=TwoWay}"/>
             <Label Grid.Column="0"
-                   Grid.Row="1"
+                   Grid.Row="2"
                    Text="Price:"/>
             <Entry Grid.Column="1"
-                   Grid.Row="1"
+                   Grid.Row="2"
                    Text="{Binding Price, Mode=TwoWay}"/>
             <StackLayout    
                 Grid.Column="0" 
                 Grid.ColumnSpan="2"
-                Grid.Row="2"
+                Grid.Row="3"
                 Orientation="Vertical">
                 <DatePicker HorizontalOptions="Center"
                     Format="dd/MMMM/yyyy"

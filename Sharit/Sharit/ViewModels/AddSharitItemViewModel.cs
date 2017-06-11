@@ -2,6 +2,9 @@
 using Sharit.Services;
 using Sharit.ViewModels.Base;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -10,11 +13,30 @@ namespace Sharit.ViewModels
 {
     public class AddSharitItemViewModel : ViewModelBase
     {
-        private string _id;
-        public string Id
+        public AddSharitItemViewModel(List<Entry> requiredElements)
         {
-            get { return _id; }
-            set { _id = value; }
+            ShowRequiredFields = false;
+            RequiredElements = requiredElements;
+        }
+
+        public List<Entry> RequiredElements { get; set; }
+        //public bool ShowRequiredFields { get; set; }
+        //private string _id;
+        //public string Id
+        //{
+        //    get { return _id; }
+        //    set { _id = value; }
+        //}
+
+        private bool _showRequiredFields;
+        public bool ShowRequiredFields
+        {
+            get { return _showRequiredFields; }
+            set
+            {
+                _showRequiredFields = value;
+                OnPropertyChanged("ShowRequiredFields");
+            }
         }
 
         private string _title;
@@ -24,6 +46,7 @@ namespace Sharit.ViewModels
             set
             {
                 _title = value;
+                ClearRequiredElements();
                 OnPropertyChanged("Title");
             }
         }
@@ -68,15 +91,6 @@ namespace Sharit.ViewModels
         public override void OnAppearing(object navigationContext)
         {
             Date = DateTime.Now;
-            //if (navigationContext is SharitItem)
-            //{
-            //    var xamagramItem = (SharitItem)navigationContext;
-
-            //    Id = xamagramItem.Id;
-            //    ImageUrl = xamagramItem.Image;
-            //    Name = xamagramItem.Name;
-            //    Description = xamagramItem.Description;
-            //}
 
             base.OnAppearing(navigationContext);
         }
@@ -84,23 +98,45 @@ namespace Sharit.ViewModels
 
         private async Task SaveAsync()
         {
-            var sharitItem = new SharitItem
+            if (RequiredElements.Any(e => string.IsNullOrEmpty(e.Text)))
             {
-                Id = Id,
-                Title = Title,
-                Description = Description,
-                Date = Date,
-                Price = Price
-            };
+                ShowRequiredFields = true;
+                foreach (var element in RequiredElements)
+                {
+                    element.BackgroundColor = Color.Red;
+                }
+            }
+            else
+            {
+                var sharitItem = new SharitItem
+                {
+                    //Id = Id,
+                    Title = Title,
+                    Description = Description,
+                    Date = Date,
+                    Price = Price
+                };
 
-            await ClientHttpService.Instance.AddSharitItem(sharitItem);
+                await ClientHttpService.Instance.AddSharitItem(sharitItem);
 
-            NavigationService.Instance.NavigateBack();
+                NavigationService.Instance.NavigateBack();
+            }
+
+
         }
 
         private void Cancel()
         {
             NavigationService.Instance.NavigateBack();
+        }
+
+        private void ClearRequiredElements()
+        {
+            ShowRequiredFields = false;
+            foreach (var element in RequiredElements)
+            {
+                element.BackgroundColor = Color.Default;
+            }
         }
     }
 }

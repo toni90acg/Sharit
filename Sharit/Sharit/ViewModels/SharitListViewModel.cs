@@ -1,8 +1,6 @@
 ﻿using Sharit.Models;
 using Sharit.Services;
 using Sharit.ViewModels.Base;
-using Sharit.Views;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -37,8 +35,13 @@ namespace Sharit.ViewModels
             {
                 _selectedItem = value;
 
-                NavigationService.Instance.NavigateTo<SharitDetailViewModel>(_selectedItem);
-                _selectedItem = null;
+                if(_selectedItem != null)
+                {
+                    NavigationService.Instance.NavigateTo<SharitDetailViewModel>(_selectedItem);
+                    _selectedItem = null;
+                }
+
+
                 OnPropertyChanged("SelectedItem");
             }
         }

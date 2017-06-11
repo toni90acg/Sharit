@@ -17,7 +17,10 @@ namespace Sharit.Views
         {
             InitializeComponent();
             Parameter = parameter;
-            BindingContext = new AddSharitItemViewModel();
+
+            var requiredElements = new List<Entry>() { TitleEntry };
+
+            BindingContext = new AddSharitItemViewModel(requiredElements);
         }
 
         public object Parameter { get; set; }
