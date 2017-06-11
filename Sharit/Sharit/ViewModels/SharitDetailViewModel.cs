@@ -1,8 +1,6 @@
-﻿using Sharit.Models;
+﻿using Sharit.Configs;
+using Sharit.Models;
 using Sharit.ViewModels.Base;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using Xamarin.Forms;
 
 namespace Sharit.ViewModels
 {
@@ -19,8 +17,16 @@ namespace Sharit.ViewModels
             }
         }
 
-        public ICommand EditCommand => new Command(Edit);
-        public ICommand DeleteCommand => new Command(async () => await DeleteAsync());
+        private string _price;
+        public string Price
+        {
+            get { return _price; }
+            set
+            {
+                _price = value;
+                OnPropertyChanged("Price");
+            }
+        }
 
         public override void OnAppearing(object navigationContext)
         {
@@ -29,22 +35,8 @@ namespace Sharit.ViewModels
             if (navigationContext is SharitItem)
             {
                 Item = (SharitItem)navigationContext;
+                Price = Item.Price.ToString() + GlobalSettings.CurrencySimbol;
             }
-        }
-
-        private void Edit()
-        {
-            //NavigationService.Instance.NavigateTo<NewXamagramItemViewModel>(Item);
-        }
-
-        private async Task DeleteAsync()
-        {
-            //if (Item.Id != null)
-            //{
-            //    await XamagramMobileService.Instance.DeleteXamagramItemAsync(Item);
-
-            //    NavigationService.Instance.NavigateBack();
-            //}
         }
     }
 }

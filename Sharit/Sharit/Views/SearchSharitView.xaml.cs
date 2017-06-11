@@ -1,8 +1,8 @@
 ﻿using Sharit.ViewModels;
 using System;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
@@ -11,15 +11,15 @@ using Xamarin.Forms.Xaml;
 namespace Sharit.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class SharitListView : ContentPage
+    public partial class SearchSharitView : ContentPage
     {
-        public SharitListView(object parameter = null)
+        public SearchSharitView(object parameter)
         {
             InitializeComponent();
 
             Parameter = parameter;
 
-            BindingContext = new SharitListViewModel();
+            BindingContext = new SearchSharitViewModel();
         }
 
         public object Parameter { get; set; }
@@ -28,7 +28,7 @@ namespace Sharit.Views
         {
             base.OnAppearing();
 
-            var viewModel = BindingContext as SharitListViewModel;
+            var viewModel = BindingContext as SearchSharitViewModel;
             if (viewModel != null) viewModel.OnAppearing(Parameter);
         }
     }

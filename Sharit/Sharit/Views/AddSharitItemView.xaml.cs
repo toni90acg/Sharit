@@ -16,8 +16,18 @@ namespace Sharit.Views
         public AddSharitItemView(object parameter)
         {
             InitializeComponent();
-
+            Parameter = parameter;
             BindingContext = new AddSharitItemViewModel();
+        }
+
+        public object Parameter { get; set; }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            var viewModel = BindingContext as AddSharitItemViewModel;
+            if (viewModel != null) viewModel.OnAppearing(Parameter);
         }
     }
 }

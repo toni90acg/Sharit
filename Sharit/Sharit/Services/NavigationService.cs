@@ -22,7 +22,8 @@ namespace Sharit.Services
         {
             { typeof(SharitListViewModel), typeof(SharitListView) },
             { typeof(SharitDetailViewModel), typeof(SharitDetailView) },
-            { typeof(AddSharitItemViewModel), typeof(AddSharitItemView) }
+            { typeof(AddSharitItemViewModel), typeof(AddSharitItemView) },
+            { typeof(SearchSharitViewModel), typeof(SearchSharitView) }
         };
 
         public void NavigateTo<TDestinationViewModel>(object navigationContext = null)

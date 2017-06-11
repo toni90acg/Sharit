@@ -53,10 +53,14 @@
     <Compile Include="Services\SharitMobileService.cs" />
     <Compile Include="ViewModels\AddSharitItemViewModel.cs" />
     <Compile Include="ViewModels\Base\ViewModelBase.cs" />
+    <Compile Include="ViewModels\SearchSharitViewModel.cs" />
     <Compile Include="ViewModels\SharitDetailViewModel.cs" />
     <Compile Include="ViewModels\SharitListViewModel.cs" />
     <Compile Include="Views\AddSharitItemView.xaml.cs">
       <DependentUpon>AddSharitItemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SearchSharitView.xaml.cs">
+      <DependentUpon>SearchSharitView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SharitDetailView.xaml.cs">
       <DependentUpon>SharitDetailView.xaml</DependentUpon>
@@ -127,6 +131,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\Templates\SharitViewCellTemplate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\SearchSharitView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

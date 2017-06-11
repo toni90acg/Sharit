@@ -1,6 +1,8 @@
 ﻿using Sharit.Models;
 using Sharit.Services;
 using Sharit.ViewModels.Base;
+using Sharit.Views;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -12,8 +14,8 @@ namespace Sharit.ViewModels
     {
         public SharitListViewModel()
         {
-            IsBusy = true;
-            LoadSharitItemsAsync();
+            //IsBusy = true;
+            //LoadSharitItemsAsync();
         }
 
         private ObservableCollection<SharitItem> _items;
@@ -36,6 +38,8 @@ namespace Sharit.ViewModels
                 _selectedItem = value;
 
                 NavigationService.Instance.NavigateTo<SharitDetailViewModel>(_selectedItem);
+                _selectedItem = null;
+                OnPropertyChanged("SelectedItem");
             }
         }
 
@@ -55,19 +59,26 @@ namespace Sharit.ViewModels
 
         public ICommand RefreshCommand => new Command(async () => await RefreshAsync());
         public ICommand NewCommand => new Command(New);
-
+        public ICommand SearchCommand => new Command(Search);
+        
         public override async void OnAppearing(object navigationContext)
         {
+            _selectedItem = null;
             base.OnAppearing(navigationContext);
-            await LoadSharitItemsAsync();
+
+            if(Items == null)
+            {
+                await LoadSharitItemsAsync();
+            }
         }
 
         private async Task RefreshAsync()
         {
+            Items = null;
             await LoadSharitItemsAsync();
         }
 
-        private async void New()
+        private void New()
         {
             //await LoadSharitItemsAsync();
             NavigationService.Instance.NavigateTo<AddSharitItemViewModel>();
@@ -85,6 +96,13 @@ namespace Sharit.ViewModels
             }
 
             IsBusy = false;
+        }
+
+        private void Search()
+        {
+            // await LoadSharitItemsAsync();
+            //await Application.Current.MainPage.Navigation.PushModalAsync(new AddSharitItemView(null));
+            NavigationService.Instance.NavigateTo<SearchSharitViewModel>(this);
         }
     }
 }

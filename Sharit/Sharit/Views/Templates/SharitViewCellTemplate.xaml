@@ -4,7 +4,7 @@
              x:Class="Sharit.Views.Templates.SharitViewCellTemplate">
     <ContentView.Content>
         <Frame
-            Margin="12">
+            Margin="5">
             <Frame.HasShadow>
                 <OnPlatform                       
                     x:TypeArguments="x:Boolean"
@@ -16,44 +16,27 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-                <Grid
-                    Grid.Row="1">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Label Grid.Column="0"
-                           Grid.Row="0"
-                           Grid.RowSpan="2"
-                           HorizontalOptions="CenterAndExpand"
-                           Text="{Binding Date, StringFormat='{}{0:dd/MM}'}"/>
+
+                <Label 
+                    Grid.Row="0"
+                    FontSize="Large"
+                    Font="Bold"
+                    Text="{Binding Title}"/>
+                <Label 
+                    Grid.Row="1"
+                    HorizontalOptions="FillAndExpand"
+                    Text="{Binding Description}"/>
+                <StackLayout Grid.Row="2" Orientation="Horizontal">
                     <Label 
-                        Grid.Row="0"
-                        Grid.Column="1"
-                        FontSize="Large"
-                        Font="Bold"
-                        Text="{Binding Title}"/>
-                    <Label 
-                        Grid.Row="1"
-                        Grid.Column="1"
-                        Text="{Binding Description}"/>
-                    <StackLayout Grid.Row="2"
-                                 Grid.Column="0"
-                                 Grid.ColumnSpan="2"
-                                 Orientation="Horizontal">
-                        <Label 
-                        Text="{Binding Categoy}"/>
-                        <Label 
                         Text="Price: "/>
-                        <Label 
+                    <Label 
                         Text="{Binding Price}"/>
-                    </StackLayout>
-                </Grid>
+                    <Label                       
+                           HorizontalOptions="End"
+                           Text="{Binding Date, StringFormat='{}{0:dd/MM}'}"/>
+                </StackLayout>
             </Grid>
         </Frame>
     </ContentView.Content>

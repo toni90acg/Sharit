@@ -2,9 +2,6 @@
 using Sharit.Services;
 using Sharit.ViewModels.Base;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -14,9 +11,6 @@ namespace Sharit.ViewModels
     public class AddSharitItemViewModel : ViewModelBase
     {
         private string _id;
-
-
-
         public string Id
         {
             get { return _id; }
@@ -73,6 +67,7 @@ namespace Sharit.ViewModels
 
         public override void OnAppearing(object navigationContext)
         {
+            Date = DateTime.Now;
             //if (navigationContext is SharitItem)
             //{
             //    var xamagramItem = (SharitItem)navigationContext;

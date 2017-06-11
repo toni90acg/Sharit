@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Sharit.Views.AddSharitItemView"
-             Title="Share It!">
+             Title="Share It with Sharit">
     <ContentPage.ToolbarItems>
         <ToolbarItem 
             Text="Save"   
@@ -14,11 +14,9 @@
         </ToolbarItem>
     </ContentPage.ToolbarItems>
     <ScrollView>
+        
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
@@ -35,34 +33,25 @@
                    Grid.Row="0"
                    Placeholder="Insert title"
                    Text="{Binding Title, Mode=TwoWay}"/>
-            <DatePicker Grid.Column="0"
-                        Grid.ColumnSpan="2"
-                        Grid.Row="1"
-                        Format="dd/MMM/yyyy"
-                        Date="{Binding Date, Mode=TwoWay}" />
             <Label Grid.Column="0"
-                   Grid.Row="2"
-                   Text="Category:"/>
-            <Entry Grid.Column="1"
-                   Grid.Row="2"
-                   Text="{Binding Category, Mode=TwoWay}"/>
-            <Label Grid.Column="0"
-                   Grid.Row="3"
+                   Grid.Row="1"
                    Text="Price:"/>
             <Entry Grid.Column="1"
-                   Grid.Row="3"
+                   Grid.Row="1"
                    Text="{Binding Price, Mode=TwoWay}"/>
-
-            <Label Grid.Column="0"
-                   Grid.Row="4"
-                   Text="Description:"/>
-            
-            <Entry Grid.Column="0"
-                   Grid.ColumnSpan="2"
-                   Grid.Row="5"
-                   Placeholder="Insert description"
-                   Text="{Binding Description, Mode=TwoWay}"/>
-
-        </Grid>
+            <StackLayout    
+                Grid.Column="0" 
+                Grid.ColumnSpan="2"
+                Grid.Row="2"
+                Orientation="Vertical">
+                <DatePicker HorizontalOptions="Center"
+                    Format="dd/MMMM/yyyy"
+                    Date="{Binding Date, Mode=TwoWay}" />
+                <Label 
+                    Text="Description:"/>
+                <Editor VerticalOptions="FillAndExpand"
+                    Text="{Binding Description, Mode=TwoWay}"/>
+            </StackLayout>
+        </Grid>        
     </ScrollView>
 </ContentPage>

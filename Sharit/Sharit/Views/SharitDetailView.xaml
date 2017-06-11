@@ -3,16 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Sharit.Views.SharitDetailView"
              Title="{Binding Item.Title}">
-    <ContentPage.ToolbarItems>
-        <ToolbarItem 
-            Text="Edit"   
-            Command="{Binding EditCommand}">
-        </ToolbarItem>
-        <ToolbarItem 
-            Text="Delete"   
-            Command="{Binding DeleteCommand}">
-        </ToolbarItem>
-    </ContentPage.ToolbarItems>
     <ScrollView>
         <StackLayout>
             <Grid>
@@ -26,30 +16,33 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="10" />
                     <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <Label     
                     Grid.Row="0"
                     Grid.ColumnSpan="2"
-                    Text="{Binding Item.Title}"/>
+                    FontSize="Large"
+                    Font="Bold"
+                    HorizontalOptions="CenterAndExpand"
+                    Text="{Binding Item.Title, Mode=TwoWay}"/>
                 <Label 
                     Grid.Row="1"
                     Grid.Column="1"
-                    Text="{Binding Item.Date}"/>
+                    HorizontalOptions="End"
+                    Text="{Binding Item.Date, Mode=TwoWay}"/>
                 <Label
                     Grid.Row="2"
                     Grid.ColumnSpan="2"
                     Grid.Column="0"
-                    Text="{Binding Item.Description}"
-                    />
-                <Label
-                    Grid.Row="3"
-                    Grid.Column="0"
-                    Text="{Binding Item.Category.Description}"/>
+                    Text="{Binding Item.Description, Mode=TwoWay}"/>
+
                 <Label
                     Grid.Row="4"
                     Grid.Column="0"
-                    Text="{Binding Item.Price}"/>
+                    Text="Price:"/>
+                <Label
+                    Grid.Row="4"
+                    Grid.Column="1"
+                    Text="{Binding Price, Mode=TwoWay}"/>
             </Grid>
         </StackLayout>
     </ScrollView>

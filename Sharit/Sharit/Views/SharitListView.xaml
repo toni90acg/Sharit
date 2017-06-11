@@ -6,8 +6,12 @@
              Title="Sharit">
     <ContentPage.ToolbarItems>
         <ToolbarItem 
-            Text="Add"            
+            Text="Add"              
             Command="{Binding NewCommand}">
+        </ToolbarItem>
+        <ToolbarItem 
+            Text="Search"            
+            Command="{Binding SearchCommand}">
         </ToolbarItem>
     </ContentPage.ToolbarItems>
     <Grid>
@@ -17,7 +21,7 @@
             IsRefreshing="{Binding IsBusy, Mode=OneWay}"
             IsPullToRefreshEnabled="True"
             HasUnevenRows="True"
-            SeparatorVisibility="Default"
+            SeparatorVisibility="None"
             RefreshCommand="{Binding RefreshCommand}">
             <ListView.ItemTemplate>
                 <DataTemplate>
