@@ -1,8 +1,6 @@
 ﻿using Sharit.Models;
 using Sharit.Services;
 using Sharit.ViewModels.Base;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
@@ -52,7 +50,7 @@ namespace Sharit.ViewModels
 
         private void Search()
         {
-            if(Items != null)
+            if(Items != null && !string.IsNullOrEmpty(TextToSearch))
             {
                 // await LoadSharitItemsAsync();
                 var results = Items.Where(s =>
@@ -61,19 +59,17 @@ namespace Sharit.ViewModels
                     {
                         if (s.Title.ToUpper().Contains(TextToSearch.ToUpper())) return true;
                     }
+                    else if (!string.IsNullOrEmpty(s.Description))
+                    {
+                        if (s.Description.ToUpper().Contains(TextToSearch.ToUpper())) return true;
+                    }
                     return false;
                 }).ToList();
 
-                _context.Items = new ObservableCollection<SharitItem>(results);
+                _context.Items = new ObservableCollection<SharitItem>(results.OrderBy(i=>i.Date));
 
-
-                //NavigationService.Instance.NavigateTo<SharitListViewModel>(_context);
                 NavigationService.Instance.NavigateBack();
             }
-            //else
-            //{
-            //    NavigationService.Instance.NavigateTo<SharitListViewModel>();
-            //}
 
             NavigationService.Instance.NavigateBack();
         }

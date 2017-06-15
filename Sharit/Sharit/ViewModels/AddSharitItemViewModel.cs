@@ -13,13 +13,15 @@ namespace Sharit.ViewModels
 {
     public class AddSharitItemViewModel : ViewModelBase
     {
-        public AddSharitItemViewModel(List<Entry> requiredElements)
+        public AddSharitItemViewModel(List<Entry> requiredElements, Entry priceEntry)
         {
             ShowRequiredFields = false;
             RequiredElements = requiredElements;
+            PriceEntry = priceEntry;
         }
 
         public List<Entry> RequiredElements { get; set; }
+        public Entry PriceEntry { get; set; }
         //public bool ShowRequiredFields { get; set; }
         //private string _id;
         //public string Id
@@ -38,6 +40,28 @@ namespace Sharit.ViewModels
                 OnPropertyChanged("ShowRequiredFields");
             }
         }
+
+        private bool _isFree;
+        public bool IsFree
+        {
+            get { return _isFree; }
+            set
+            {
+                _isFree = value;
+                if (value)
+                {
+                    Price = 0;
+                    PriceEntry.IsEnabled = false;
+                }
+                else
+                {
+                    PriceEntry.IsEnabled = true;
+                }
+                OnPropertyChanged("IsFree");
+            }
+        }
+
+        
 
         private string _title;
         public string Title
@@ -100,14 +124,11 @@ namespace Sharit.ViewModels
         {
             if (RequiredElements.Any(e => string.IsNullOrEmpty(e.Text)))
             {
-                ShowRequiredFields = true;
-                foreach (var element in RequiredElements)
-                {
-                    element.BackgroundColor = Color.Red;
-                }
+                MarkRequiredElements();
             }
             else
             {
+                NavigationService.Instance.PushSharitModal();
                 var sharitItem = new SharitItem
                 {
                     //Id = Id,
@@ -119,15 +140,26 @@ namespace Sharit.ViewModels
 
                 await ClientHttpService.Instance.AddSharitItem(sharitItem);
 
+                NavigationService.Instance.PopSharitModal();
                 NavigationService.Instance.NavigateBack();
             }
-
-
         }
 
         private void Cancel()
         {
             NavigationService.Instance.NavigateBack();
+        }
+
+        private void MarkRequiredElements()
+        {
+            ShowRequiredFields = true;
+            foreach (var element in RequiredElements)
+            {
+                if (string.IsNullOrEmpty(element.Text))
+                {
+                    element.BackgroundColor = Color.Red;
+                }
+            }
         }
 
         private void ClearRequiredElements()

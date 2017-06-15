@@ -9,7 +9,7 @@ namespace Sharit
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new SharitListView());
+            MainPage = new CustomNavigationPage(new SharitListView());
         }
 
         protected override void OnStart()

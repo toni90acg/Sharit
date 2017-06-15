@@ -15,7 +15,7 @@
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
@@ -23,6 +23,7 @@
                     Grid.Row="0"
                     FontSize="Large"
                     Font="Bold"
+                    HorizontalOptions="Center"
                     Text="{Binding Title}"/>
                 <Label 
                     Grid.Row="1"
@@ -33,9 +34,15 @@
                         Text="Price: "/>
                     <Label 
                         Text="{Binding Price}"/>
-                    <Label                       
-                           HorizontalOptions="End"
-                           Text="{Binding Date, StringFormat='{}{0:dd/MM}'}"/>
+                    <Label 
+                        Text="€"/>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
+                        <Label                       
+                           HorizontalOptions="EndAndExpand"
+                           Font="Italic"
+                           Text="{Binding Date, StringFormat='{}{0:dd/MM/yyyy}'}"/>
+                    </StackLayout>
+
                 </StackLayout>
             </Grid>
         </Frame>

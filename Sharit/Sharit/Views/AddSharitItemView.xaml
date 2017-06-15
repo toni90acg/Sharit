@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Sharit.Views.AddSharitItemView"
-             Title="Share It with Sharit">
+             Title="Share It">
     <ContentPage.ToolbarItems>
         <ToolbarItem 
             Text="Save"   
@@ -15,8 +15,9 @@
     </ContentPage.ToolbarItems>
     <ScrollView>
         
-        <Grid>
+        <Grid Margin="5">
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -48,11 +49,17 @@
                    Text="Price:"/>
             <Entry Grid.Column="1"
                    Grid.Row="2"
+                   Keyboard="Numeric"
+                   x:Name="PriceEntry"
                    Text="{Binding Price, Mode=TwoWay}"/>
+            <StackLayout Orientation="Horizontal" Grid.Row="3" Grid.ColumnSpan ="2" HorizontalOptions="Center" VerticalOptions="Start">
+                <Label Text="Is it free?"/>
+                <Switch IsToggled="{Binding IsFree}"/>
+            </StackLayout>
             <StackLayout    
                 Grid.Column="0" 
                 Grid.ColumnSpan="2"
-                Grid.Row="3"
+                Grid.Row="4"
                 Orientation="Vertical">
                 <DatePicker HorizontalOptions="Center"
                     Format="dd/MMMM/yyyy"
@@ -60,6 +67,7 @@
                 <Label 
                     Text="Description:"/>
                 <Editor VerticalOptions="FillAndExpand"
+                    x:Name="DescriptionEntry"
                     Text="{Binding Description, Mode=TwoWay}"/>
             </StackLayout>
         </Grid>        

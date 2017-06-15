@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Sharit.Views.SharitListView"
              xmlns:templates="clr-namespace:Sharit.Views.Templates;assembly=Sharit"
-             Title="Sharit">
+             Title="Sharit"
+             >
     <ContentPage.ToolbarItems>
         <ToolbarItem 
             Text="Add"              
@@ -20,7 +21,8 @@
             SelectedItem="{Binding SelectedItem, Mode=TwoWay}" 
             IsRefreshing="{Binding IsBusy, Mode=OneWay}"
             IsPullToRefreshEnabled="True"
-            HasUnevenRows="True"
+            RowHeight="150"
+            HasUnevenRows="False"
             SeparatorVisibility="None"
             RefreshCommand="{Binding RefreshCommand}">
             <ListView.ItemTemplate>

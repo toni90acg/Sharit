@@ -1,5 +1,6 @@
 ﻿using Sharit.ViewModels;
 using Sharit.Views;
+using Sharit.Views.Modals;
 using System;
 using System.Collections.Generic;
 using Xamarin.Forms;
@@ -39,5 +40,17 @@ namespace Sharit.Services
         {
             Application.Current.MainPage.Navigation.PopAsync();
         }
+
+        public void PushSharitModal()
+        {
+            Application.Current.MainPage.Navigation.PushModalAsync(new SharitModalView());
+        }
+
+        public void PopSharitModal()
+        {
+            Application.Current.MainPage.Navigation.PopModalAsync();
+        }
+
+
     }
 }

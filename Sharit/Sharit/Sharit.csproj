@@ -56,8 +56,15 @@
     <Compile Include="ViewModels\SearchSharitViewModel.cs" />
     <Compile Include="ViewModels\SharitDetailViewModel.cs" />
     <Compile Include="ViewModels\SharitListViewModel.cs" />
+    <Compile Include="ViewModels\Modals\SharitModalViewModel.cs" />
     <Compile Include="Views\AddSharitItemView.xaml.cs">
       <DependentUpon>AddSharitItemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CustomNavigationPage.xaml.cs">
+      <DependentUpon>CustomNavigationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Modals\SharitModalView.xaml.cs">
+      <DependentUpon>SharitModalView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SearchSharitView.xaml.cs">
       <DependentUpon>SearchSharitView.xaml</DependentUpon>
@@ -137,6 +144,18 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\SearchSharitView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Modals\SharitModalView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\CustomNavigationPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

@@ -4,8 +4,8 @@
              x:Class="Sharit.Views.SharitDetailView"
              Title="{Binding Item.Title}">
     <ScrollView>
-        <StackLayout>
-            <Grid>
+        <StackLayout Margin="10">
+            <!--<Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
@@ -27,12 +27,14 @@
                 <Label 
                     Grid.Row="1"
                     Grid.Column="1"
+                    Font="Italic"
                     HorizontalOptions="End"
-                    Text="{Binding Item.Date, Mode=TwoWay}"/>
+                    Text="{Binding Item.Date, Mode=TwoWay, StringFormat='{}{0:dd/MMMM/yyyy}'}"/>
                 <Label
                     Grid.Row="2"
                     Grid.ColumnSpan="2"
                     Grid.Column="0"
+                    HorizontalOptions="CenterAndExpand"
                     Text="{Binding Item.Description, Mode=TwoWay}"/>
 
                 <Label
@@ -43,7 +45,31 @@
                     Grid.Row="4"
                     Grid.Column="1"
                     Text="{Binding Price, Mode=TwoWay}"/>
-            </Grid>
+            </Grid>-->
+            <Label     
+                    FontSize="Large"
+                    Font="Bold"
+                    HorizontalOptions="CenterAndExpand"
+                    Text="{Binding Item.Title, Mode=TwoWay}"/>
+            <Label 
+                    Font="Italic"
+                    HorizontalOptions="End"
+                    Text="{Binding Item.Date, Mode=TwoWay, StringFormat='{}{0:dd/MMMM/yyyy}'}"/>
+            <Label
+                    Grid.Row="2"
+                    Grid.ColumnSpan="2"
+                    Grid.Column="0"
+                    HorizontalOptions="CenterAndExpand"
+                    HorizontalTextAlignment="Center"
+                    Text="{Binding Item.Description, Mode=TwoWay}"/>
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="End">
+                <Label
+                    Text="Price:"/>
+                <Label
+                    Text="{Binding Price, Mode=TwoWay}"/>
+            </StackLayout>
+
         </StackLayout>
     </ScrollView>
 </ContentPage>

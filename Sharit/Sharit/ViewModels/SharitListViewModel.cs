@@ -1,5 +1,6 @@
 ﻿using Sharit.Models;
 using Sharit.Services;
+using System.Linq;
 using Sharit.ViewModels.Base;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -66,6 +67,7 @@ namespace Sharit.ViewModels
         
         public override async void OnAppearing(object navigationContext)
         {
+            NavigationService.Instance.PushSharitModal();
             _selectedItem = null;
             base.OnAppearing(navigationContext);
 
@@ -73,6 +75,8 @@ namespace Sharit.ViewModels
             {
                 await LoadSharitItemsAsync();
             }
+
+            NavigationService.Instance.PopSharitModal();
         }
 
         private async Task RefreshAsync()
@@ -95,7 +99,7 @@ namespace Sharit.ViewModels
 
             if (result != null)
             {
-                Items = new ObservableCollection<SharitItem>(result);
+                Items = new ObservableCollection<SharitItem>(result.OrderBy(i=>i.Date));
             }
 
             IsBusy = false;
@@ -103,8 +107,6 @@ namespace Sharit.ViewModels
 
         private void Search()
         {
-            // await LoadSharitItemsAsync();
-            //await Application.Current.MainPage.Navigation.PushModalAsync(new AddSharitItemView(null));
             NavigationService.Instance.NavigateTo<SearchSharitViewModel>(this);
         }
     }
